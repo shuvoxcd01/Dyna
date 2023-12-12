@@ -2,7 +2,7 @@
 Iterative Policy Evaluation for estimating state-value function from an arbitrary policy.
 
 # Environment
-[Denny Britz's reinforcement-learning repository] (https://github.com/dennybritz/reinforcement-learning.git) has been a great help in creating the environment. Most of the environment related code is taken from there.
+[Denny Britz's reinforcement-learning repository](https://github.com/dennybritz/reinforcement-learning.git) has been a great help in creating the environment. Most of the environment related code is taken from there.
 
 Grid World environment from Sutton's Reinforcement Learning book chapter 4. You are an agent on an MxN grid and your goal is to reach the terminal state at the top left or the bottom right corner.
 
@@ -26,7 +26,7 @@ There are two functions that perform policy evaluation.
 
 For the Grid World environment described above and a uniform random policy, both the functions converges to the following value assignment - which matches with Sutton & Barto's book (Reinforcement Learning An Introduction (Second Edition) See: Figure 4.1, Page: 77)
 
-   0.0   -14.0   -20.0   -22.0 
- -14.0   -18.0   -20.0   -20.0 
- -20.0   -20.0   -18.0   -14.0 
- -22.0   -20.0   -14.0     0.0 
+      0.0  -14.0  -20.0  -22.0   
+    -14.0  -18.0  -20.0  -20.0   
+    -20.0  -20.0  -18.0  -14.0   
+    -22.0  -20.0  -14.0    0.0   
