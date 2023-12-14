@@ -8,9 +8,7 @@ class ExactPolicyEvaluation(BasePolicyEvaluation):
     def __init__(self, policy, mdp: GridWorld):
         super().__init__(policy, mdp)
 
-    def estimate_state_value_function_with_system_of_linear_equations(
-        self, theta=0.001
-    ):
+    def estimate_state_value_function_with_system_of_linear_equations(self):
         num_states = self.env.nS
 
         coeff_mat = np.zeros(shape=(self.env.nS, self.env.nS), dtype=np.float32)
