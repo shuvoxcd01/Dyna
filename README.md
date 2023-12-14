@@ -20,11 +20,15 @@ Actions going off the edge leave you in your current state.
 You receive a reward of -1 at each step until you reach a terminal state.
 
 # Evaluation
-There are two functions that perform policy evaluation. 
+Two types of policy evaluation implementations have been added.  
+1. Exact Policy Evaluation: Uses Bellman's equation and solution to a system of linear equations.
+2. Iterative Policy Evaluation: Evaluates policy in an iterative manner.
+
+The Iterative Policy Evaluation offers two functions that perform policy evaluation. 
 1. estimate_state_value_function_inplace
 2. estimate_state_value_function
 
-For the Grid World environment described above and a uniform random policy, both the functions converges to the following value assignment - which matches with Sutton & Barto's book (Reinforcement Learning An Introduction (Second Edition) See: Figure 4.1, Page: 77)
+For the Grid World environment described above and a uniform random policy, all the functions converge to the following value assignment - which matches with Sutton & Barto's book (Reinforcement Learning An Introduction (Second Edition) See: Figure 4.1, Page: 77)
 
       0.0  -14.0  -20.0  -22.0   
     -14.0  -18.0  -20.0  -20.0   
