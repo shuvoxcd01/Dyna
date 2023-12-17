@@ -1,8 +1,7 @@
-from src.base_policy_evaluation import BasePolicyEvaluation
 from src.envs.gridworld_mdp import GridWorld
 import numpy as np
+from src.policy_evaluation.base_policy_evaluation import BasePolicyEvaluation
 from src.utils.vis_util import print_grid
-
 
 class ExactPolicyEvaluation(BasePolicyEvaluation):
     def __init__(self, policy, mdp: GridWorld):

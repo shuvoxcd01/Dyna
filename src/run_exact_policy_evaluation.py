@@ -1,6 +1,6 @@
 from src.envs.gridworld_mdp import GridWorld
-from src.exact_policy_evaluation import ExactPolicyEvaluation
 from src.policy.random_policy import EquiprobableRandomPolicy
+from src.policy_evaluation.exact_policy_evaluation import ExactPolicyEvaluation
 
 mdp = GridWorld()
 mdp.reset()

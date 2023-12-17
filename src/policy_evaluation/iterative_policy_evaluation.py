@@ -1,7 +1,7 @@
 from copy import deepcopy
 from src.envs.gridworld_mdp import GridWorld
+from src.policy_evaluation.base_policy_evaluation import BasePolicyEvaluation
 from src.utils.vis_util import print_grid
-from src.base_policy_evaluation import BasePolicyEvaluation
 
 
 class IterativePolicyEvaluation(BasePolicyEvaluation):
