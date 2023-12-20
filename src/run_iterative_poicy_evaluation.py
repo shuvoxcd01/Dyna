@@ -5,7 +5,7 @@ from src.policy_evaluation.iterative_policy_evaluation import IterativePolicyEva
 mdp = GridWorld()
 mdp.reset()
 mdp._render("human")
-policy = EquiprobableRandomPolicy()
+policy = EquiprobableRandomPolicy(mdp=mdp)
 policy_evaluation = IterativePolicyEvaluation(policy=policy, mdp=mdp)
 
 policy_evaluation.estimate_state_value_function(theta=0.000000000000001)
