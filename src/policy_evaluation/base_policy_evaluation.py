@@ -1,8 +1,11 @@
+from abc import ABC, abstractmethod
+from typing import Optional
 from src.envs.gridworld_mdp import GridWorld
+from src.policy.base_policy import BasePolicy
 
 
-class BasePolicyEvaluation:
-    def __init__(self, policy, mdp: GridWorld):
+class BasePolicyEvaluation(ABC):
+    def __init__(self, mdp: GridWorld, policy: Optional[BasePolicy] = None):
         self.states = mdp.states
         self.actions = mdp.actions
         self.reward_fn = mdp.reward_fn
@@ -21,3 +24,10 @@ class BasePolicyEvaluation:
 
     def get_value_fn(self):
         return lambda state: self.get_value(state)
+
+    def set_policy(self, new_policy):
+        self.policy = new_policy
+
+    @abstractmethod
+    def evaluate_policy(self, policy):
+        pass
