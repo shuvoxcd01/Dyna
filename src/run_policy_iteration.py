@@ -5,6 +5,7 @@ from src.policy_iteration.policy_iteration import PolicyIteration
 
 
 mdp = GridWorld()
+mdp.gamma = 0.999
 policy_evaluator = ExactPolicyEvaluation(mdp=mdp)
 initial_policy = EquiprobableRandomPolicy(mdp=mdp)
 

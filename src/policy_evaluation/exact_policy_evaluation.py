@@ -3,7 +3,7 @@ from src.envs.gridworld_mdp import GridWorld
 import numpy as np
 from src.policy.base_policy import BasePolicy
 from src.policy_evaluation.base_policy_evaluation import BasePolicyEvaluation
-from src.utils.vis_util import print_grid
+from src.utils.vis_util import print_value_grid
 
 
 class ExactPolicyEvaluation(BasePolicyEvaluation):
@@ -48,6 +48,6 @@ class ExactPolicyEvaluation(BasePolicyEvaluation):
         for i in range(self.env.nS):
             self.set_value(self.env.states[i], state_values[i])
 
-        print_grid(value_fn=self.get_value_fn(), states=self.states)
+        print_value_grid(value_fn=self.get_value_fn(), states=self.states)
 
         return self.V

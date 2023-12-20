@@ -3,7 +3,7 @@ from typing import Optional
 from src.envs.gridworld_mdp import GridWorld
 from src.policy.base_policy import BasePolicy
 from src.policy_evaluation.base_policy_evaluation import BasePolicyEvaluation
-from src.utils.vis_util import print_grid
+from src.utils.vis_util import print_value_grid
 
 
 class IterativePolicyEvaluation(BasePolicyEvaluation):
@@ -31,9 +31,9 @@ class IterativePolicyEvaluation(BasePolicyEvaluation):
 
                 delta = max(delta, abs(v - self.get_value(state)))
             if print_each_iter:
-                print_grid(value_fn=self.get_value_fn(), states=self.states, k=k)
+                print_value_grid(value_fn=self.get_value_fn(), states=self.states, k=k)
 
-        print_grid(value_fn=self.get_value_fn(), states=self.states, k=k)
+        print_value_grid(value_fn=self.get_value_fn(), states=self.states, k=k)
 
         return self.V
 
@@ -79,9 +79,9 @@ class IterativePolicyEvaluation(BasePolicyEvaluation):
 
             self.V = new_values
             if print_each_iter:
-                print_grid(value_fn=self.get_value_fn(), states=self.states, k=k)
+                print_value_grid(value_fn=self.get_value_fn(), states=self.states, k=k)
 
-        print_grid(value_fn=self.get_value_fn(), states=self.states, k=k)
+        print_value_grid(value_fn=self.get_value_fn(), states=self.states, k=k)
 
         return self.V
 

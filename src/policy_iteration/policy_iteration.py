@@ -7,6 +7,7 @@ from src.policy.random_policy import EquiprobableRandomPolicy
 from src.policy_evaluation.base_policy_evaluation import BasePolicyEvaluation
 from src.policy_evaluation.exact_policy_evaluation import ExactPolicyEvaluation
 from src.policy_evaluation.iterative_policy_evaluation import IterativePolicyEvaluation
+from src.utils.vis_util import print_policy_grid
 
 
 class PolicyIteration:
@@ -15,7 +16,9 @@ class PolicyIteration:
         self.policy_evaluator = policy_evaluator
 
     def _initialize_policy(self):
-        assert self.mdp.gamma != 1.0 , "Policy evaluation may not converge for gamma = 1.0"
+        assert (
+            self.mdp.gamma != 1.0
+        ), "Policy evaluation may not converge for gamma = 1.0"
 
         states = self.mdp.states
         actions = self.mdp.actions
@@ -36,6 +39,7 @@ class PolicyIteration:
 
         while True:
             V = self.policy_evaluator.evaluate_policy(old_policy)
+            print_policy_grid(policy=old_policy, states=self.mdp.states)
 
             policy = DeterministicPolicy()
 
@@ -60,9 +64,8 @@ class PolicyIteration:
                     is_policy_stable = False
 
             if is_policy_stable:
+                print("\nPolicy stable. Printing policy grid:")
+                print_policy_grid(policy=policy, states=self.mdp.states)
                 return V, policy
 
             old_policy = policy
-
-
-
