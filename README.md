@@ -1,5 +1,7 @@
-# Policy-Evaluation
-Iterative Policy Evaluation for estimating state-value function from an arbitrary policy.
+# Policy-Evaluation & Policy-Iteration
+* Iterative Policy Evaluation for estimating state-value function from an arbitrary policy.
+* Exact Policy Evaluation using Bellman's Equation.
+* Policy Iteration (to find a optimal value function and a deterministic optimal policy)
 
 # Environment
 [Denny Britz's reinforcement-learning repository](https://github.com/dennybritz/reinforcement-learning.git) has been a great help in creating the environment. Most of the environment related code is taken from there.
@@ -34,3 +36,22 @@ For the Grid World environment described above and a uniform random policy, all 
     -14.0  -18.0  -20.0  -20.0   
     -20.0  -20.0  -18.0  -14.0   
     -22.0  -20.0  -14.0    0.0   
+
+An optimal value function (shown in grid below): 
+
+     0.0  -1.0  -2.0  -3.0
+    -1.0  -2.0  -3.0  -2.0
+    -2.0  -3.0  -2.0  -1.0
+    -3.0  -2.0  -1.0   0.0
+
+
+An optimal deterministic policy (shown in grid below):
+
+
+    UP     LEFT   LEFT   DOWN   
+    UP     UP     UP     DOWN   
+    UP     UP     RIGHT  DOWN   
+    UP     RIGHT  RIGHT  UP     
+----------------------------------
+
+To get an optimal value function and an optimal policy run: run_policy_iteration.py
