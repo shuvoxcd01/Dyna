@@ -1,9 +1,6 @@
-# Policy-Evaluation & Policy-Iteration
-* Iterative Policy Evaluation for estimating state-value function from an arbitrary policy.
-* Exact Policy Evaluation using Bellman's Equation.
-* Policy Iteration (to find a optimal value function and a deterministic optimal policy)
+# Dyna: Dynamic Programming in RL
 
-# Environment
+## Environment
 [Denny Britz's reinforcement-learning repository](https://github.com/dennybritz/reinforcement-learning.git) has been a great help in creating the environment. Most of the environment related code is taken from there.
 
 Grid World environment from Sutton's Reinforcement Learning book chapter 4. You are an agent on an MxN grid and your goal is to reach the terminal state at the top left or the bottom right corner.
@@ -21,7 +18,11 @@ You can take actions in each direction (UP=0, RIGHT=1, DOWN=2, LEFT=3).
 Actions going off the edge leave you in your current state.
 You receive a reward of -1 at each step until you reach a terminal state.
 
-# Evaluation
+## Policy-Evaluation & Policy-Iteration
+* Iterative Policy Evaluation for estimating state-value function from an arbitrary policy.
+* Exact Policy Evaluation using Bellman's Equation.
+* Policy Iteration (to find a optimal value function and a deterministic optimal policy)
+
 Two types of policy evaluation implementations have been added.  
 1. Exact Policy Evaluation: Uses Bellman's equation and solution to a system of linear equations.
 2. Iterative Policy Evaluation: Evaluates policy in an iterative manner.
