@@ -1,16 +1,22 @@
-from src.base_policy_evaluation import BasePolicyEvaluation
+from typing import Optional
 from src.envs.gridworld_mdp import GridWorld
 import numpy as np
-from src.utils.vis_util import print_grid
+from src.policy.base_policy import BasePolicy
+from src.policy_evaluation.base_policy_evaluation import BasePolicyEvaluation
+from src.utils.vis_util import print_value_grid
 
 
 class ExactPolicyEvaluation(BasePolicyEvaluation):
-    def __init__(self, policy, mdp: GridWorld):
-        super().__init__(policy, mdp)
+    def __init__(self, mdp: GridWorld, policy: Optional[BasePolicy] = None):
+        super().__init__(mdp, policy)
 
-    def estimate_state_value_function_with_system_of_linear_equations(self):
-        num_states = self.env.nS
+    def evaluate_policy(self, policy):
+        self.policy = policy
+        state_values = self.get_state_value_function_with_system_of_linear_equations()
 
+        return state_values
+
+    def get_state_value_function_with_system_of_linear_equations(self):
         coeff_mat = np.zeros(shape=(self.env.nS, self.env.nS), dtype=np.float32)
         reward_mat = np.zeros(shape=(self.env.nS), dtype=np.float32)
 
@@ -42,6 +48,6 @@ class ExactPolicyEvaluation(BasePolicyEvaluation):
         for i in range(self.env.nS):
             self.set_value(self.env.states[i], state_values[i])
 
-        print_grid(value_fn=self.get_value_fn(), states=self.states)
+        print_value_grid(value_fn=self.get_value_fn(), states=self.states)
 
-        return state_values
+        return self.V

@@ -1,12 +1,14 @@
 from copy import deepcopy
+from typing import Optional
 from src.envs.gridworld_mdp import GridWorld
-from src.utils.vis_util import print_grid
-from src.base_policy_evaluation import BasePolicyEvaluation
+from src.policy.base_policy import BasePolicy
+from src.policy_evaluation.base_policy_evaluation import BasePolicyEvaluation
+from src.utils.vis_util import print_value_grid
 
 
 class IterativePolicyEvaluation(BasePolicyEvaluation):
-    def __init__(self, policy, mdp: GridWorld):
-        super().__init__(policy, mdp)
+    def __init__(self, mdp: GridWorld, policy: Optional[BasePolicy] = None):
+        super().__init__(mdp, policy)
 
     def estimate_state_value_function_inplace(self, theta=0.001, print_each_iter=False):
         """
@@ -29,9 +31,11 @@ class IterativePolicyEvaluation(BasePolicyEvaluation):
 
                 delta = max(delta, abs(v - self.get_value(state)))
             if print_each_iter:
-                print_grid(value_fn=self.get_value_fn(), states=self.states, k=k)
+                print_value_grid(value_fn=self.get_value_fn(), states=self.states, k=k)
 
-        print_grid(value_fn=self.get_value_fn(), states=self.states, k=k)
+        print_value_grid(value_fn=self.get_value_fn(), states=self.states, k=k)
+
+        return self.V
 
     def get_updated_state_value(self, cur_state):
         updated_state_value = 0
@@ -50,7 +54,7 @@ class IterativePolicyEvaluation(BasePolicyEvaluation):
             updated_state_value += action_prob * state_value_after_taking_action
         return updated_state_value
 
-    def estimate_state_value_function(self, theta=0.001, print_each_iter=False):
+    def estimate_state_value_function(self, theta=0.001, print_each_iter=True):
         """
         :param theta: A small threshold theta > 0 - determining accuracy of estimation.
         :return: An estimated state-value function (as a python dictionary).
@@ -75,6 +79,12 @@ class IterativePolicyEvaluation(BasePolicyEvaluation):
 
             self.V = new_values
             if print_each_iter:
-                print_grid(value_fn=self.get_value_fn(), states=self.states, k=k)
+                print_value_grid(value_fn=self.get_value_fn(), states=self.states, k=k)
 
-        print_grid(value_fn=self.get_value_fn(), states=self.states, k=k)
+        print_value_grid(value_fn=self.get_value_fn(), states=self.states, k=k)
+
+        return self.V
+
+    def evaluate_policy(self, policy):
+        self.policy = policy
+        return self.estimate_state_value_function()
